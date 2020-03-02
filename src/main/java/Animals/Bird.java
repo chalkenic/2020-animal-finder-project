@@ -1,34 +1,56 @@
 package Animals;
 
+import java.util.ArrayList;
+
 public class Bird extends Animal {
-    private String[] coloursOfTheFeathers;
+    private ArrayList<String> coloursOfTheFeathers;
     private String shapeOfTheBeak;
-    private Integer minLengthOfWingspan;
-    private Integer maxLengthOfWingspan;
+    private Double minLengthOfWingspan;
+    private Double maxLengthOfWingspan;
 
     public Bird (
             String type,
             String noun,
             String ScientificNoun,
-            Integer minSizeCm,
-            Integer maxSizeCm,
+            Double minSizeCm,
+            Double maxSizeCm,
             Double size,
-            String colour,
-            String country,
-            String[] naturalHabitat,
+            ArrayList<String> colour,
+            ArrayList<String> country,
+            ArrayList<String> naturalHabitat,
             String shapeOfTheBeak,
-            Integer minLengthOfWingspan,
-            Integer maxLengthOfWingspan,
-            String[] coloursOfTheFeathers) {
+            ArrayList<String> coloursOfTheFeathers,
+            Double minLengthOfWingspan,
+            Double maxLengthOfWingspan
+            ) {
         
         super(type, noun, ScientificNoun, minSizeCm,
                 maxSizeCm, size, colour, country,
                 naturalHabitat);
 
-        this.coloursOfTheFeathers = coloursOfTheFeathers;
+
         this.shapeOfTheBeak = shapeOfTheBeak;
         this.minLengthOfWingspan = minLengthOfWingspan;
         this.maxLengthOfWingspan = maxLengthOfWingspan;
+        this.coloursOfTheFeathers = coloursOfTheFeathers;
         
+    }
+
+    @Override
+    public String toString() {
+        return
+                "\n--- TYPE: " + type +
+                "\n--- NOUN: " + noun +
+                "\n--- SCIENTIFIC NOUN: " + scientificNoun +
+                "\n--- MINIMUM SIZE (CM): " + minSizeCm +
+                "\n--- MAXIMUM SIZE(CM): " + maxSizeCm +
+                "\n--- SIZE: " + size +
+                "\n--- COLOUR: " + colour +
+                "\n--- COUNTRY: " + country +
+                "\n--- NATURAL HABITAT: " + naturalHabitat +
+                "\n--- FEATHER COLOUR: " + coloursOfTheFeathers +
+                "\n--- BEAK SHAPE: " + shapeOfTheBeak +
+                "\n--- MINIMUM WINGSPAN LENGTH (CM): " + minLengthOfWingspan +
+                "\n--- MAXIMUM WINGSPAN LENGTH (CM): " + maxLengthOfWingspan;
     }
 }
