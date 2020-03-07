@@ -36,10 +36,6 @@ public abstract class Animal {
 
     }
 
-//    public void addHabitat(Animal habitatAdded){
-//        naturalHabitat.add(habitatAdded);
-//    }
-
     //Animal Getters
     public String getType() { return type; }
     public String getNoun() { return noun; }
@@ -52,6 +48,54 @@ public abstract class Animal {
     public ArrayList<String> getNaturalHabitat() { return naturalHabitat; }
     public ArrayList<AnimalMovements> getMovements() { return movements; }
 
+    public ArrayList<String> getAllData() {
+
+        ArrayList<String> dataSet = new ArrayList<>();
+        dataSet.add(type);
+        dataSet.add(noun);
+        dataSet.add(scientificNoun);
+        dataSet.add(String.valueOf(minSizeCm));
+        dataSet.add(String.valueOf(maxSizeCm));
+        dataSet.add(String.valueOf(size));
+
+        for (String data : colour) dataSet.add(data);
+
+        for (String data : country) {
+            String[] sepList = data.split(",");
+            dataSet.addAll(Arrays.asList(sepList));
+        }
+
+        for (String data : naturalHabitat) {
+            String[]sepList = data.split(",");
+            dataSet.addAll(Arrays.asList(sepList));
+        }
+        for (AnimalMovements data : movements) { dataSet.add(String.valueOf(data)); }
+
+        if(this.type.equals("Bird")) {
+            dataSet.add(((Bird)this).getShapeOfTheBeak());
+
+            ArrayList<String> feathers = ((Bird)this).getColoursOfTheFeathers();
+
+            if(feathers != null) {
+                for (String data : feathers) {
+                    String[] sepList = data.split(",");
+                    dataSet.addAll(Arrays.asList(sepList));
+                }
+            }
+            dataSet.add(String.valueOf(((Bird)this).getMinLengthOfWingspan()));
+            dataSet.add (String.valueOf(((Bird)this).getMaxLengthOfWingspan()));
+
+        } else if (this.type.equals("Bat")) {
+
+            dataSet.add(String.valueOf(((Bat)this).getMinLengthOfWingspan()));
+            dataSet.add (String.valueOf(((Bat)this).getMaxLengthOfWingspan()));
+            }
+
+        return dataSet;
+    }
+
+
+
 
     public void setType(String type) { this.type = type; }
     public void setNoun(String noun) { this.noun = noun; }
@@ -62,8 +106,12 @@ public abstract class Animal {
     public void setColour(ArrayList<String> colour) { this.colour = colour; }
     public void setCountry(ArrayList<String> country) { this.country = country; }
     public void setNaturalHabitat(ArrayList<String> naturalHabitat) { this.naturalHabitat = naturalHabitat; }
-    public void setMovements(ArrayList<AnimalMovements> movements) { this.movements = movements;
-    }
+    public void setMovements(ArrayList<AnimalMovements> movements) { this.movements = movements; }
+
+//    public abstract String getShapeOfTheBeak();
+//    public abstract ArrayList<String> getColoursOfTheFeathers();
+//    public abstract  Double getMinLengthOfWingspan();
+//    public abstract  Double getMaxLengthOfWingspan();
 
 //    public void setCanSwim(String type, String noun) {
 //        if (type.equals("Mammal") || type.equals("Reptile")) {
@@ -101,14 +149,17 @@ public abstract class Animal {
     public String toString() {
         return
                 "-- TYPE: " + type +
-                "\n--- NAME: " + noun +
-                "\n--- SCIENTIFIC NAME: " + scientificNoun +
-                "\n--- MINIMUM SIZE (CM): " + minSizeCm +
-                "\n--- MAXIMUM SIZE (CM): " + maxSizeCm +
-                "\n--- APPROX SIZE: " + size +
-                "\n--- COLOUR: " + colour +
-                "\n--- ORIGIN(S) OF ANIMAL: " + country +
-                "\n--- NATURAL HABITAT(S): " + naturalHabitat;
+                        "\n--- NAME: " + noun +
+                        "\n--- SCIENTIFIC NAME: " + scientificNoun +
+                        "\n--- MINIMUM SIZE (CM): " + minSizeCm +
+                        "\n--- MAXIMUM SIZE (CM): " + maxSizeCm +
+                        "\n--- APPROX SIZE: " + size +
+                        "\n--- COLOUR: " + colour +
+                        "\n--- ORIGIN(S) OF ANIMAL: " + country +
+                        "\n--- NATURAL HABITAT(S): " + naturalHabitat +
+                        "\n--- MOVEMENT METHODS: " + movements;
     }
+
+
 
 }

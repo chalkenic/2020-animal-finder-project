@@ -23,18 +23,71 @@ public class Bird extends Animal {
             Double minLengthOfWingspan,
             Double maxLengthOfWingspan
             ) {
-        
+
+
         super(type, noun, ScientificNoun, minSizeCm,
                 maxSizeCm, size, colour, country,
                 naturalHabitat);
 
+        final Integer BIRD_MIN_SIZE = 5;
+        final Integer BIRD_MAX_SIZE = 210;
+
+        if (size < BIRD_MIN_SIZE || size > BIRD_MAX_SIZE) {
+            throw new IllegalArgumentException(this.noun + " has an incorrect bird size value - ignoring entry to " +
+                    "database" +
+                    ".");
+        }
+
+
 
         this.shapeOfTheBeak = shapeOfTheBeak;
+        this.coloursOfTheFeathers = coloursOfTheFeathers;
         this.minLengthOfWingspan = minLengthOfWingspan;
         this.maxLengthOfWingspan = maxLengthOfWingspan;
-        this.coloursOfTheFeathers = coloursOfTheFeathers;
+
+
+        if(noun.contains("Penguin") || noun.contains("Ostrich")) { setMovements(AnimalMovements.walk,
+                AnimalMovements.swim); }
+
+        else { setMovements(AnimalMovements.swim, AnimalMovements.walk, AnimalMovements.fly); }
         
     }
+
+//    public String getShapeOfBeak2() {return shapeOfTheBeak; }
+
+//    @Override
+    public ArrayList<String> getColoursOfTheFeathers() { return coloursOfTheFeathers; }
+//
+//    @Override
+    public String getShapeOfTheBeak() { return shapeOfTheBeak; }
+
+//    @Override
+    public Double getMinLengthOfWingspan() { return minLengthOfWingspan; }
+
+//    @Override
+    public Double getMaxLengthOfWingspan() { return maxLengthOfWingspan; }
+
+//    public void setColoursOfTheFeathers(ArrayList<String> coloursOfTheFeathers) {
+//        this.coloursOfTheFeathers = coloursOfTheFeathers;
+//    }
+
+
+
+//    public void setShapeOfTheBeak(String shapeOfTheBeak) {
+//        this.shapeOfTheBeak = shapeOfTheBeak;
+//    }
+
+
+
+//    public void setMinLengthOfWingspan(Double minLengthOfWingspan) {
+//        this.minLengthOfWingspan = minLengthOfWingspan;
+//    }
+
+
+//
+//    public void setMaxLengthOfWingspan(Double maxLengthOfWingspan) {
+//        this.maxLengthOfWingspan = maxLengthOfWingspan;
+//    }
 
     @Override
     public String toString() {
@@ -53,4 +106,5 @@ public class Bird extends Animal {
                 "\n--- MINIMUM WINGSPAN LENGTH (CM): " + minLengthOfWingspan +
                 "\n--- MAXIMUM WINGSPAN LENGTH (CM): " + maxLengthOfWingspan;
     }
+
 }

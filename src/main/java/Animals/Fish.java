@@ -19,6 +19,17 @@ public class Fish extends Animal {
                 maxSizeCm, size, colour, country,
                 naturalHabitat);
 
-    }
+        setMovements(AnimalMovements.swim);
 
+        final double FISH_MIN_SIZE = 0.7;
+        final Integer FISH_MAX_SIZE = 1265;
+
+        if (size < FISH_MIN_SIZE || size > FISH_MAX_SIZE) {
+            throw new IllegalArgumentException(this.noun + " has an incorrect fish size value - ignoring entry to " +
+                    "database" +
+                    ".");
+
+        }
+
+    }
 }
